@@ -1,0 +1,68 @@
+<!-- https://meme-api.herokuapp.com/gimme -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meme Api</title>
+</head>
+<style>
+    body {
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       background-color: rgb(129, 118, 19);
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80vw;
+        height: 90vh;
+    }
+
+    img {
+        width: 70%;
+        height: 90%;
+    }
+    button{
+        font-size: 1em;
+        font-weight: bold;
+        color: white;
+        background-color: gray;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-top: 5px
+    }
+</style>
+
+<body>
+    
+    <div>
+
+    </div>
+    <button onclick="fn()" >click here to get a new meme</button>
+</body>
+<script>
+    function fn() {
+        let response = fetch('https://meme-api.herokuapp.com/gimme');
+
+        let object = response.then((res) => {
+            return res.json();
+        })
+        object.then((info) => {
+            console.log(info);
+            let src = info.url;
+            document.querySelector('div').innerHTML = `<img src=${src}>`
+        })
+    }
+
+
+</script>
+
+</html>
